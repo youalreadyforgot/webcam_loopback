@@ -18,9 +18,9 @@ run_loop()
 {
 	
 		read -p "Enter the path of the video file:" path
-		read -p "Loop video?:y/n" answer
+		read -p "Loop video?:Y/n:" answer
 
-		if [ $answer == "y" ] 
+		if [ $answer == "y" || $answer == "\n" ] 
 		then
 			while [ 1 ]
 				do
