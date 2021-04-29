@@ -6,7 +6,7 @@ grab_desktop()
 	read -p "framerate:" framerate
        	read -p "resolution(ex:1280x720):" resolution
 		
-	#ffmpeg -f x11grab -framerate $framerate -video_size $resolution -i :0.0+0,0 -f v4l2 /dev/video0
+	ffmpeg -f x11grab -framerate $framerate -video_size $resolution -i :0.0+0,0 -f v4l2 /dev/video0
 }
 cleanup()
 {
@@ -20,13 +20,13 @@ run_loop()
 		read -p "Enter the path of the video file:" path
 		read -p "Loop video?:Y/n:" answer
 
-		if [ $answer == "y" || $answer == "\n" ] 
+		if [ $answer == "y" ] 
 		then
 			while [ 1 ]
 				do
 				ffmpeg -re -i $path -f v4l2 /dev/video0 
 				done
-		elif [$answer == "n"]
+		elif [ $answer == "n" ]
 			then ffmpeg -re -i $path -f v4l2 /dev/video0
 		fi
 }
